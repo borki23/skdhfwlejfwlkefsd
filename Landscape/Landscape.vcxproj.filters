@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{1035f967-8384-4776-a82f-34abb493bafe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\World">
+      <UniqueIdentifier>{48fb89ad-87f7-41b5-8523-6cfe076233db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\World">
+      <UniqueIdentifier>{d1fdc294-5061-40b4-93e7-320bc44020e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Structures">
+      <UniqueIdentifier>{752c567d-e278-415d-8737-3f7c9a001a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Structures">
+      <UniqueIdentifier>{b21b2b13-363d-4be2-b843-65ae603b22bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Handlers">
+      <UniqueIdentifier>{c7ce14c7-6824-42ad-8444-221cab14a56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Handlers">
+      <UniqueIdentifier>{19017af2-179c-412b-8d67-cb6de40bb4c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Math">
+      <UniqueIdentifier>{a8f71e0b-90f7-4bcf-b095-a45771e4752e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Landscape.cpp">
+      <Filter>Quelldateien\World</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Quelldateien\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Quelldateien\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Noise.cpp">
+      <Filter>Quelldateien\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Quelldateien\Structures</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Landscape.h">
+      <Filter>Headerdateien\World</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Headerdateien\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces.h">
+      <Filter>Headerdateien\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Headerdateien\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Noise.h">
+      <Filter>Headerdateien\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Headerdateien\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>Headerdateien\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Quadtree.h">
+      <Filter>Headerdateien\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Headerdateien\Math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="landscape_fragment.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="landscape_vertex.glsl">
+      <Filter>Shader</Filter>
+    </None>
+  </ItemGroup>
+</Project>
