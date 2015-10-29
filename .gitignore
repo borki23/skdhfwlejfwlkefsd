@@ -1,7 +1,7 @@
-*.sdf
-*.png
-*.tmp
-#*.*
-#!*.h
-#!*.cpp
-#!*.glsl
+#*.sdf
+#*.png
+#*.tmp
+*.*
+!*.h
+!*.cpp
+!*.glsl
