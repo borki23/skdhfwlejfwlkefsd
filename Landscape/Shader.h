@@ -38,9 +38,11 @@ struct ShaderUpdate
 class Shader
 {
 	private:
-		const GLchar* MODELVIEWNAME = "gl_ModelView";
-		const GLchar* PROJECTIONNAME = "gl_Projection";
-		const GLchar* TIMENAME = "gl_Time";
+		const GLchar* MODELVIEWNAME = "gModelView";
+		const GLchar* PROJECTIONNAME = "gProjection";
+		const GLchar* TIMENAME = "gTime";
+		const GLchar* NORMALNAME = "gNormal";
+		const GLchar* DEBUGNAME = "gDebug";
 
 		GLuint m_nProgramID;
 		std::string m_sCurrentFragmentShader;
@@ -52,7 +54,12 @@ class Shader
 		GLint m_nPerspectiveMatrixPos;
 		glm::mat4 m_currentPerspectiveMatrix;
 		GLint m_nCurrentTimePos;
-		GLfloat m_nCurrentTime;
+		GLint m_nCurrentNormalPos;
+		GLint m_nCurrentDebugPos;
+		GLfloat m_fCurrentTime;
+		GLfloat m_fDebugState;
+
+		void printProgramError(GLuint id) const;
 	public:
 		Shader();
 		Shader(glm::mat4 &gModelViewMatrix, glm::mat4 &gPerspectiveMatrix);
@@ -60,6 +67,8 @@ class Shader
 
 		GLuint SetShader(const std::string & sShader, GLenum eType);
 		GLuint initProgram();
+
+		GLint getProgramID() const { return m_nProgramID; };
 	
 		void bind()
 		{
@@ -71,8 +80,8 @@ class Shader
 		}
 		void setElapsedTime(GLfloat fTime)
 		{
-			m_nCurrentTime = fTime;
-			glUniform1f(m_nCurrentTimePos, m_nCurrentTime);
+			m_fCurrentTime = fTime;
+			glUniform1f(m_nCurrentTimePos, m_fCurrentTime);
 		}
 
 		void setModelViewMatrix(glm::mat4 &gModelViewMatrix)
@@ -85,6 +94,18 @@ class Shader
 		{
 			m_currentPerspectiveMatrix = gPerspectiveMatrix;
 			glUniformMatrix4fv(m_nPerspectiveMatrixPos, 1, GL_FALSE, glm::value_ptr(m_currentPerspectiveMatrix));
+		}
+
+		void setDebugOn()
+		{
+			m_fDebugState = 1.0f;
+			glUniform1fv(m_nCurrentDebugPos, 1, &m_fDebugState);
+		}
+
+		void setDebugOff()
+		{
+			m_fDebugState = 0.0f;
+			glUniform1fv(m_nCurrentDebugPos, 1, &m_fDebugState);
 		}
 
 		/*static void setStaticModelView(const glm::mat4 &gModelViewMatrix)

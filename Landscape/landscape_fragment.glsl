@@ -1,7 +1,20 @@
-int snowHeight;
-precision lowp float;
-uniform float gl_Time;
+//precision lowp float;
+uniform float gTime;
+varying float oHeight;
+uniform float bTerrainMode;
+
 void main()
 {
-   gl_FragColor = vec4( 1.0, abs(sin(mod(gl_Time/1000.0f,500.0))), 0.0, 1.0 );
+	if (bTerrainMode == 0.0f)
+	{
+		gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+		return;
+	}
+	if (oHeight < 0.35) 
+	{
+		gl_FragColor  = vec4(0.0,0.0,1.0,1.0);
+	} else
+	{
+		gl_FragColor = vec4(mix(vec3(0.0,1.0,0.0),vec3(1.0),oHeight),1.0);
+	}
 }

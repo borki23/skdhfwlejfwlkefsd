@@ -202,7 +202,7 @@ int main(int argc, char ** args)
 {
 	glutInit(&argc,args);
 
-	glutInitContextVersion(3,0);
+	glutInitContextVersion(3,1);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 	//glutInitContextProfile(GLUT_CORE_PROFILE);
 	//glutInitContextFlags(GLUT_DEBUG);
@@ -248,11 +248,11 @@ bool setupWorld()
 	Landscape* landscape;
 
 	//Make start perlin noise 
-	noise.MakeNoise(255, 255, NoiseType::PERLIN);
+	noise.MakeNoise(200, 200, NoiseType::PERLIN);
 	landscapeInfo.height = noise.getCurrentNoiseImage().height;
 	landscapeInfo.width = noise.getCurrentNoiseImage().width;
 	landscapeInfo.data = noise.getCurrentNoiseImage().data;
-	landscape = new Landscape(0.5f, landscapeInfo, "landscape");
+	landscape = new Landscape(0.9f, landscapeInfo, "landscape");
 	if (!landscape->makeLandscape())
 	{
 		printf("Error while creating landscape...");

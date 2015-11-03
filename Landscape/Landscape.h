@@ -8,6 +8,7 @@
 #include "Shader.h"
 #include "Interfaces.h"
 #include "types.h"
+#include "MathHelper.h"
 
 struct LandscapeInfo 
 {
@@ -17,6 +18,7 @@ struct LandscapeInfo
 	std::vector<GLfloat> vertexes;
 	std::vector<vertexf> svertexes;
 	std::vector<GLint> indices;
+	std::vector<glm::vec3> normals;
 };
 
 class Landscape : public Drawable, public Updateable
@@ -27,11 +29,15 @@ class Landscape : public Drawable, public Updateable
 		GLboolean wireFrame = false;
 
 		Shader standardShader;
+		Shader clearShader;
 
 		GLboolean surfaceChanged;
 		//GLuint currentDrawMode;
+		//TODO OUTSOURCE IN PROCEDURAL.h
 		GLuint indexBuffer;
 		GLuint vertexBuffer;
+		GLuint normBuffer;
+		GLint bTerrainMode;
 	public:
 		Landscape();
 		Landscape(GLfloat scale, const LandscapeInfo &info, const std::string& identifier);

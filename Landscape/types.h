@@ -12,7 +12,11 @@ struct vertexf {
 	GLfloat x;
 	GLfloat y;
 	GLfloat z;
+	//GLfloat nx;
+	//GLfloat ny;
+	//GLfloat nz;
 };
+
 
 struct point2di
 {

@@ -47,7 +47,7 @@ GLuint Shader::initProgram()
 		glGetProgramiv(m_nProgramID, GL_INFO_LOG_LENGTH, &nMaxLength);
 		char* cInfo = new char[nMaxLength];
 		glGetProgramInfoLog(m_nProgramID, nMaxLength, &nLogLength, cInfo);
-		std::cout << cInfo << std::endl;
+		printf("%s", cInfo);
 		delete[] cInfo;
 		glDeleteShader(m_nVertexShaderID);
 		glDeleteShader(m_nFragmentShaderID);
@@ -57,25 +57,44 @@ GLuint Shader::initProgram()
 	glDeleteShader(m_nVertexShaderID);
 	glDeleteShader(m_nFragmentShaderID);
 
+	m_nPerspectiveMatrixPos = glGetUniformLocation(m_nProgramID, PROJECTIONNAME);
+	if (m_nPerspectiveMatrixPos == -1)
+	{
+		printf("Cannot find uniform: %s\n", PROJECTIONNAME);
+		printProgramError(m_nProgramID);
+		//return ERROR_CANNOT_FIND_UNIFORM;
+	}
+
 	m_nModelViewMatrixPos = glGetUniformLocation(m_nProgramID, MODELVIEWNAME);
 	if (m_nModelViewMatrixPos == -1)
 	{
-		printf("Cannot find uniform: %s", MODELVIEWNAME);
-		return ERROR_CANNOT_FIND_UNIFORM;
-	}
-
-	m_nPerspectiveMatrixPos = glGetUniformLocation(m_nProgramID, PROJECTIONNAME);
-	if (m_nModelViewMatrixPos == -1)
-	{
-		printf("Cannot find uniform: %s", PROJECTIONNAME);
-		return ERROR_CANNOT_FIND_UNIFORM;
+		printf("Cannot find uniform: %s\n", MODELVIEWNAME);
+		printProgramError(m_nProgramID);
+		//return ERROR_CANNOT_FIND_UNIFORM;
 	}
 
 	m_nCurrentTimePos = glGetUniformLocation(m_nProgramID, TIMENAME);
 	if (m_nCurrentTimePos == -1)
 	{
-		printf("Cannot find uniform: %s", TIMENAME);
-		return ERROR_CANNOT_FIND_UNIFORM;
+		printf("Cannot find uniform: %s\n", TIMENAME);
+		printProgramError(m_nProgramID);
+		//return ERROR_CANNOT_FIND_UNIFORM;
+	}
+
+	m_nCurrentNormalPos = glGetAttribLocation(m_nProgramID, NORMALNAME);
+	if (m_nCurrentTimePos == -1)
+	{
+		printf("Cannot find attribute: %s\n", NORMALNAME);
+		printProgramError(m_nProgramID);
+		//return ERROR_CANNOT_FIND_UNIFORM;
+	}
+
+	m_nCurrentDebugPos = glGetUniformLocation(m_nProgramID, DEBUGNAME);
+	if (m_nCurrentDebugPos == -1)
+	{
+		printf("Cannot find uniform: %s\n", DEBUGNAME);
+		printProgramError(m_nProgramID);
+		//return ERROR_CANNOT_FIND_UNIFORM;
 	}
 
 	glUniformMatrix4fv(m_nModelViewMatrixPos, 1, GL_FALSE, glm::value_ptr(m_currentModelViewMatrix));
@@ -131,3 +150,13 @@ GLuint Shader::SetShader(const std::string & sShader, GLenum eType)
 	return ERROR_CANNOT_OPEN_SHADER_FILE;
 }
 
+void Shader::printProgramError(GLuint id) const
+{
+	int nLogLength = 0;
+	int nMaxLength = 0;
+
+	glGetProgramiv(m_nProgramID, GL_INFO_LOG_LENGTH, &nMaxLength);
+	char* cInfo = new char[nMaxLength];
+	glGetProgramInfoLog(m_nProgramID, nMaxLength, &nLogLength, cInfo);
+	printf("%s", cInfo);
+}

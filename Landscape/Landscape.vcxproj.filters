@@ -86,12 +86,21 @@
     <ClInclude Include="MathHelper.h">
       <Filter>Headerdateien\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Procedural.h">
+      <Filter>Headerdateien\Structures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="landscape_fragment.glsl">
       <Filter>Shader</Filter>
     </None>
     <None Include="landscape_vertex.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="clearShader_fragment.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="clearShader_vertex.glsl">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

@@ -1,22 +1,11 @@
-const float HEIGHTBARRIER = 150.0; 
-const float WATERBARRIER = 25.0; 
 uniform mat4 gProjection;
 uniform mat4 gModelView;
 uniform float gTime;
-varying float oHeight;
 attribute vec3 gNormal;
 
-uniform float bTerrainMode;
-
-void main(){
+void main()
+{
 	vec4 pos = gProjection*gModelView*gl_Vertex;
-	if (bTerrainMode == 1.0f){
-		
-		oHeight = gl_Vertex.y/HEIGHTBARRIER;
-		if (gl_Vertex.y < WATERBARRIER){
-			pos = vec4(pos.x, WATERBARRIER, pos.z, 1.0);
-		}
-	}	
 	gl_Position = pos;
 }
 

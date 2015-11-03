@@ -5,9 +5,7 @@
 #include <time.h>
 #include <random>
 #include "types.h"
-#include "MathHelper.h"
-
-#define PI 3.14159265359
+#include "MathHelper.h"    
 
 struct NoiseImage {
 	GLint width;
@@ -25,7 +23,7 @@ struct Grid{
 
 enum NoiseType {
 	PERLIN,
-	SMOOTH,
+	//SMOOTH,
 	FBM
 };
 
@@ -52,6 +50,9 @@ struct NoiseSettings{
 	GLint random;
 	InterpolationType intType;
 	GLfloat size;
+	//cubic int not supportet :]
+	GLdouble(*intFnct) (GLdouble, GLdouble, GLdouble);
+	GLdouble(*hashFnct) (GLdouble, GLdouble);
 };
 
 class Noise{
@@ -66,23 +67,28 @@ class Noise{
 		ILuint imageId;
 		NoiseImage currentImage;
 		std::vector<point2df> gradients;
-
+		std::vector<GLfloat> noise;
 		void createGradients(GLint x, GLint y);
+		GLfloat dotGridGrad(GLint gridX, GLint gridY, GLfloat pX, GLfloat pY, const NoiseSettings &settings);
 
 		GLboolean makeTexture();
 		GLdouble interpolate(GLdouble x, GLdouble y, const NoiseSettings& settings);
 
-		GLfloat linInterpolation(GLfloat start, GLfloat end, GLfloat t);
+		/*GLfloat linInterpolation(GLfloat start, GLfloat end, GLfloat t);
 		GLdouble cosInterpolation(GLdouble start, GLdouble end, GLdouble t);
 		GLdouble cubicInterpolation(GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3, GLdouble mu);
-
+		*/
 		//GLdouble smoothTest(GLdouble x, GLdouble y);
+		//http://lodev.org/cgtutor/randomnoise.html#Smooth_Noise_
 		GLdouble smoothNoise(GLdouble x, GLdouble y, GLdouble size, const NoiseSettings& settings);
+		//
+		GLfloat perlinNoise(GLfloat x, GLfloat y, const NoiseSettings &settings);
+		GLfloat perlinNoiseOctave(GLfloat x, GLfloat y, const NoiseSettings &settings);
 
 		GLdouble hash(GLuint x, GLuint y);
 		GLdouble hash2(GLuint x, GLuint y);
 
-		GLfloat perlinNoise(GLuint x, GLuint y, const NoiseSettings &settings);
+		
 		
 };
 
